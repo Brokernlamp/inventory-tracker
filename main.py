@@ -956,8 +956,7 @@ def show_login_page():
         
         tab1, tab2 = st.tabs(["🔐 Sign In", "📝 Create Account"])
         
-        with tab1:
-            st.info("📱 Demo Login: Phone: 'admin' | Password: 'admin123'")
+        
             
             with st.form("login_form"):
                 phone = st.text_input("📞 Phone Number", placeholder="Enter your phone number")
