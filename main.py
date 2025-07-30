@@ -10,9 +10,16 @@ import urllib.parse
 
 # Database connection function
 def get_connection():
-    # Your Neon database URL
-    db_url = "postgresql://neondb_owner:npg_OIs9AMbuLm4G@ep-winter-morning-adik1lij-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require"
+
+    # Try Streamlit secrets first, then environment variable
+    db_url = st.secrets.get("DB_URL") or os.getenv("DB_URL")
+    if not db_url:
+        st.error("Database URL not configured. Please add DB_URL to secrets.")
+        st.stop()
     return psycopg2.connect(db_url)
+
+    # Your Neon database URL
+
 
 # Database initialization
 def init_main_database():
